@@ -1,4 +1,4 @@
-<?php include '../cek_session.php'; ?>
+<?php include '<div class=""></div>./cek_session.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>

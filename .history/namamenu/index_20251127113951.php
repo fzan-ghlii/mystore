@@ -1,4 +1,3 @@
-<?php include '../cek_session.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +17,7 @@
 </head>
 <body>
 
-    <div class="container-fluid px-4 mb-5">
+    <div class="container mb-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span><i class="fas fa-box-open"></i> Manajemen Produk / Menu</span>

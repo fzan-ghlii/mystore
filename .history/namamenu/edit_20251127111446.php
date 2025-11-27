@@ -1,4 +1,3 @@
-<?php include '../cek_session.php'; ?>
 <?php
 include 'db.php';
 $id = $_GET['id'];

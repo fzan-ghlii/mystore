@@ -1,18 +1,24 @@
-<?php include '../cek_session.php'; ?>
 <?php
 include 'db.php';
-$pesan = ""; // Variabel untuk menampung alert
 
-if (isset($_POST['submit'])) {
+// Ambil ID dari URL
+$id = $_GET['id'];
+
+// Ambil data lama
+$sql = "SELECT * FROM tbjenismenu WHERE id_jenis=$id";
+$result = $conn->query($sql);
+$data = $result->fetch_assoc();
+
+// Proses Update
+if (isset($_POST['update'])) {
     $nama_jenis = $_POST['nama_jenis'];
-    $sql = "INSERT INTO tbjenismenu (nama_jenis) VALUES ('$nama_jenis')";
 
-    if ($conn->query($sql) === TRUE) {
-        // Berhasil: Set variabel pesan sukses
+    $sql_update = "UPDATE tbjenismenu SET nama_jenis='$nama_jenis' WHERE id_jenis=$id";
+
+     if ($conn->query($sql_update) === TRUE) {
         $pesan = "sukses";
     } else {
-        $pesan = "gagal"; 
-        $error_msg = $conn->error;
+        $pesan = "gagal";
     }
 }
 ?>
@@ -21,9 +27,8 @@ if (isset($_POST['submit'])) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Tambah Kategori</title>
+    <title>Edit Kategori</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body class="bg-light">
@@ -31,16 +36,18 @@ if (isset($_POST['submit'])) {
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow">
-                    <div class="card-header bg-success text-white">Tambah Kategori</div>
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">Edit Kategori</h5>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="">
                             <div class="mb-3">
                                 <label class="form-label">Nama Kategori</label>
-                                <input type="text" name="nama_jenis" class="form-control" required autocomplete="off">
+                                <input type="text" name="nama_jenis" class="form-control" value="<?php echo $data['nama_jenis']; ?>" required>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <a href="index.php" class="btn btn-secondary">Batal</a>
-                                <button type="submit" name="submit" class="btn btn-success">Simpan Data</button>
+                                <button type="submit" name="update" class="btn btn-primary">Update Data</button>
                             </div>
                         </form>
                     </div>
@@ -48,27 +55,23 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
-
-    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <script>
-        // Cek variabel PHP $pesan
         <?php if($pesan == "sukses"){ ?>
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
-                text: 'Kategori berhasil ditambahkan.',
+                text: 'Data berhasil diperbarui.',
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {
-                window.location = 'index.php'; // Redirect via JS
+                window.location = 'index.php';
             });
         <?php } elseif($pesan == "gagal"){ ?>
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal!',
-                text: 'Error: <?php echo $error_msg; ?>',
+                text: 'Terjadi kesalahan sistem.',
             });
         <?php } ?>
     </script>

@@ -1,4 +1,3 @@
-<?php include '../cek_session.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .container-fluid { margin-top: 20px; }
+        .container { margin-top: 50px; }
         .card { border: none; shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
         .card-header { background: linear-gradient(to right, #1E90FF, #779936); color: white; border-radius: 10px 10px 0 0 !important; font-weight: bold; }
         .btn-add { background-color: #779936; color: white; border: none; }
@@ -18,7 +17,7 @@
 </head>
 <body>
 
-    <div class="container-fluid px-4 mb-5">
+    <div class="container mb-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span><i class="fas fa-box-open"></i> Manajemen Produk / Menu</span>

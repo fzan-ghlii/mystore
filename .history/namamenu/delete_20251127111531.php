@@ -1,40 +1,46 @@
-<?php include '../cek_session.php'; ?>
 <?php
 include 'db.php';
+$pesan = "";
 
-// Cek apakah ada parameter ID
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    
+    // 1. Ambil nama file gambar dulu sebelum data dihapus
+    $queryCek = $conn->query("SELECT image FROM tbnamamenu WHERE id_menu=$id");
+    $data = $queryCek->fetch_assoc();
+    
+    // 2. Hapus file fisik gambar jika ada
+    if (!empty($data['image'])) {
+        $pathFile = "../img/portfolio/" . $data['image'];
+        if (file_exists($pathFile)) {
+            unlink($pathFile); // Fungsi PHP untuk menghapus file
+        }
+    }
 
-    // Query hapus
-    $sql = "DELETE FROM tbjenismenu WHERE id_jenis=$id";
+    // 3. Hapus data dari database
+    $sql = "DELETE FROM tbnamamenu WHERE id_menu=$id";
 
     if ($conn->query($sql) === TRUE) {
-        // Jika berhasil, kembali ke index
-        header("Location: index.php");
+        $pesan = "sukses";
     } else {
-        echo "Error deleting record: " . $conn->error;
+        $pesan = "gagal";
     }
 } else {
-    // Jika akses langsung tanpa ID, kembalikan ke index
     header("Location: index.php");
+    exit();
 }
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Hapus Data</title>
-    <!-- SweetAlert2 CSS -->
+    <title>Hapus Produk</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>body { font-family: sans-serif; background: #f4f7f6; }</style>
 </head>
 <body>
 
-    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -42,7 +48,7 @@ $conn->close();
             Swal.fire({
                 icon: 'success',
                 title: 'Terhapus!',
-                text: 'Kategori berhasil dihapus.',
+                text: 'Produk dan gambarnya berhasil dihapus.',
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {
@@ -52,7 +58,7 @@ $conn->close();
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal!',
-                text: 'Data gagal dihapus. Mungkin sedang digunakan oleh produk lain.',
+                text: 'Terjadi kesalahan saat menghapus data.',
             }).then(() => {
                 window.location = 'index.php';
             });
