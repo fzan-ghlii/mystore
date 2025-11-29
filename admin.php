@@ -12,137 +12,112 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Chemika Nusantara</title>
-    <!-- Bootstrap 5 & FontAwesome -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- SweetAlert2 CSS (WAJIB ADA) -->
+    <!-- ====== FAVICONS ====== -->
+<link rel="icon" type="image/png" sizes="16x16" href="img/logo/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="img/logo/favicon-32x32.png" />
+<link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
+
+<!-- ====== APPLE TOUCH ICON ====== -->
+<link rel="apple-touch-icon" href="img/logo/apple-touch-icon.png" />
+
+<!-- ====== ANDROID / CHROME ICONS ====== -->
+<link rel="icon" type="image/png" sizes="192x192" href="img/logo/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="img/logo/android-chrome-512x512.png" />
+
+<!-- ====== WEB MANIFEST ====== -->
+<link rel="manifest" href="img/logo/site.webmanifest" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { dark: '#0B0C10', card: '#1F2833', neon: '#66FCF1' }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            overflow: hidden; 
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-        }
+        /* Hide Scrollbar for Sidebar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* SIDEBAR FIXED */
-        .sidebar {
-            height: 100vh;
-            background: linear-gradient(to bottom, #1E90FF, #104e8b);
-            color: white;
-            padding-top: 20px;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 250px;
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .sidebar h4 {
-            text-align: center;
-            font-weight: 700;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 20px;
-        }
-        
-        .menu-items {
-            flex-grow: 1; /* Agar menu mengisi ruang */
-        }
-
-        .sidebar a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            padding: 15px 25px;
-            font-size: 16px;
-            border-left: 4px solid transparent;
-            transition: 0.3s;
-        }
-        .sidebar a:hover, .sidebar a.active {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            border-left-color: #779936; 
-        }
-        .sidebar i {
-            width: 30px;
-        }
-
-        /* Tombol Logout */
-        .logout-btn {
-            background-color: rgba(220, 53, 69, 0.2);
-            color: #ffcccc !important;
-            margin-bottom: 20px;
-            cursor: pointer; /* Ubah cursor jadi tangan */
-        }
-        .logout-btn:hover {
-            background-color: #dc3545 !important;
-            color: white !important;
-        }
-        
-        /* MAIN CONTENT */
-        .main-content {
-            margin-left: 250px; 
-            height: 100vh;      
-            width: calc(100% - 250px); 
-            display: block;     
-        }
-        
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
+        /* Iframe adjustments */
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
-<body>
+<body class="bg-dark text-gray-300 font-sans overflow-hidden">
 
-    <div>
-        <!-- Sidebar Kiri -->
-        <div class="sidebar">
-            <h4><i class="fas fa-flask"></i>Chemika Lab</h4>
-            
-            <div class="menu-items">
-                <a href="?page=home" class="<?php echo (!isset($_GET['page']) || $_GET['page'] == 'home') ? 'active' : ''; ?>">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
-                
-                <a href="?page=jenis" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'jenis') ? 'active' : ''; ?>">
-                    <i class="fas fa-tags"></i> Kategori Menu
-                </a>
-                
-                <a href="?page=produk" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'produk') ? 'active' : ''; ?>">
-                    <i class="fas fa-box-open"></i> Produk Menu
-                </a>
+    <div class="flex h-screen">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-64 h-full bg-[#141619] border-r border-white/10 flex flex-col justify-between flex-shrink-0 z-50">
+            <div>
+                <!-- Brand -->
+                <div class="h-20 flex items-center justify-center border-b border-white/5">
+                    <h1 class="text-xl font-bold text-white tracking-wider flex items-center gap-2">
+                        <img src="img/logo.png" alt="Logo Chemika" class="w-10 h-10 rounded-full object-cover border-2 border-[#66FCF1]"> CHEMIKA<span class="text-neon">LAB</span>
+                    </h1>
+                </div>
 
-                <a href="index.php" target="_blank" class="mt-4 text-warning">
-                    <i class="fas fa-external-link-alt"></i> Lihat Website
-                </a>
+                <!-- Menu Items -->
+                <nav class="p-4 space-y-2 mt-4">
+                    <p class="text-xs font-bold text-gray-500 uppercase px-3 mb-2 tracking-widest">Main Menu</p>
+                    
+                    <a href="?page=home" class="flex items-center gap-3 px-3 py-3 rounded-lg <?php echo (!isset($_GET['page']) || $_GET['page'] == 'home') ? 'bg-neon/10 text-neon border-l-2 border-neon' : 'text-gray-400 hover:bg-white/5 hover:text-white'; ?> transition-all duration-200">
+                        <i class="fa-solid fa-house w-5 text-center"></i> Dashboard
+                    </a>
+                    
+                    <a href="?page=jenis" class="flex items-center gap-3 px-3 py-3 rounded-lg <?php echo (isset($_GET['page']) && $_GET['page'] == 'jenis') ? 'bg-neon/10 text-neon border-l-2 border-neon' : 'text-gray-400 hover:bg-white/5 hover:text-white'; ?> transition-all duration-200">
+                        <i class="fa-solid fa-tags w-5 text-center"></i> Kategori Menu
+                    </a>
+                    
+                    <a href="?page=produk" class="flex items-center gap-3 px-3 py-3 rounded-lg <?php echo (isset($_GET['page']) && $_GET['page'] == 'produk') ? 'bg-neon/10 text-neon border-l-2 border-neon' : 'text-gray-400 hover:bg-white/5 hover:text-white'; ?> transition-all duration-200">
+                        <i class="fa-solid fa-box-open w-5 text-center"></i> Produk Menu
+                    </a>
+
+                    <div class="pt-4 mt-4 border-t border-white/5">
+                        <a href="index.php" target="_blank" class="flex items-center gap-3 px-3 py-3 rounded-lg text-yellow-500 hover:bg-yellow-500/10 transition-all duration-200">
+                            <i class="fa-solid fa-external-link-alt w-5 text-center"></i> Lihat Website
+                        </a>
+                    </div>
+                </nav>
             </div>
 
-            <!-- TOMBOL LOGOUT DENGAN SWEETALERT -->
-            <!-- Pemicu JavaScript konfirmasiLogout -->
-            <a href="logout.php" class="logout-btn" onclick="konfirmasiLogout(event, this.href)">
-                <i class="fas fa-sign-out-alt"></i> Keluar
-            </a>
-        </div>
+            <!-- User Profile & Logout -->
+            <div class="p-4 border-t border-white/5 bg-[#0f1114]">
+                <div class="flex items-center gap-3 mb-4 px-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-neon to-blue-500 flex items-center justify-center text-dark font-bold text-lg">
+                        <?php echo substr($_SESSION['nama_lengkap'] ?? 'A', 0, 1); ?>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-white"><?php echo $_SESSION['nama_lengkap'] ?? 'Admin'; ?></p>
+                        <p class="text-xs text-green-400">● Online</p>
+                    </div>
+                </div>
+                <a href="logout.php" onclick="konfirmasiLogout(event, this.href)" class="block w-full text-center bg-red-500/10 text-red-400 border border-red-500/20 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-all text-sm font-semibold">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </a>
+            </div>
+        </aside>
 
-        <!-- Konten Kanan -->
-        <div class="main-content">
+        <!-- MAIN CONTENT (IFRAME) -->
+        <main class="flex-1 h-full bg-[#0B0C10] relative">
             <?php
             $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             
             switch ($page) {
                 case 'jenis':
-                    $source = "jenismenu/index.php";
+                    $source = "jenismenu/index.php"; // Pastikan path folder benar
                     break;
                 case 'produk':
-                    $source = "namamenu/index.php";
+                    $source = "namamenu/index.php"; // Pastikan path folder benar
                     break;
                 default:
                     $source = "dashboard_home.php";
@@ -150,46 +125,31 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
             }
             ?>
             <iframe src="<?php echo $source; ?>" name="contentFrame"></iframe>
-        </div>
+        </main>
     </div>
 
-    <!-- SCRIPT SWEETALERT LOGOUT -->
+    <!-- Script SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <script>
     function konfirmasiLogout(event, urlLink) {
-        event.preventDefault(); // Mencegah link langsung jalan
-        
+        event.preventDefault();
         Swal.fire({
-            title: 'Yakin ingin keluar?',
-            text: "Sesi admin Anda akan diakhiri.",
-            icon: 'question',
+            title: 'Logout?',
+            text: "Sesi Anda akan diakhiri.",
+            icon: 'warning',
+            background: '#1F2833',
+            color: '#fff',
             showCancelButton: true,
-            confirmButtonColor: '#d33', // Warna Merah untuk tombol Keluar
-            cancelButtonColor: '#3085d6', // Warna Biru untuk tombol Batal
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#374151',
             confirmButtonText: 'Ya, Keluar',
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Efek loading sukses sebentar sebelum redirect
-                let timerInterval
-                Swal.fire({
-                    title: 'Sampai Jumpa!',
-                    html: 'Sedang keluar...',
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                    },
-                    willClose: () => {
-                        // Setelah loading selesai, pindah ke logout.php
-                        window.location.href = urlLink;
-                    }
-                })
+                window.location.href = urlLink;
             }
         })
     }
     </script>
-
 </body>
 </html>

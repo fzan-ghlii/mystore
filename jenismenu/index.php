@@ -5,36 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Jenis Menu</title>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { dark: '#0B0C10', card: '#1F2833', neon: '#66FCF1' }
+                }
+            }
+        }
+    </script>
     <style>
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .container { margin-top: 50px; }
-        .card { border: none; shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
-        .card-header { background: linear-gradient(to right, #1E90FF, #779936); color: white; border-radius: 10px 10px 0 0 !important; font-weight: bold; }
-        .btn-add { background-color: #779936; color: white; border: none; }
-        .btn-add:hover { background-color: #5e870e; color: white; }
+        /* Styling Paksa untuk Tabel yang di-include agar sesuai tema gelap */
+        table { width: 100%; border-collapse: collapse; color: #e5e7eb; }
+        th { background-color: #111316; color: #66FCF1; padding: 12px; text-align: left; border-bottom: 2px solid #374151; }
+        td { padding: 12px; border-bottom: 1px solid #374151; }
+        tr:hover { background-color: rgba(102, 252, 241, 0.05); }
+        .btn { padding: 6px 12px; border-radius: 6px; font-size: 0.875rem; text-decoration: none; display: inline-block; margin-right: 5px; }
+        .btn-primary, .btn-info { background-color: #3b82f6; color: white; }
+        .btn-danger { background-color: #ef4444; color: white; }
+        .btn-warning { background-color: #eab308; color: black; }
     </style>
 </head>
-<body>
+<body class="bg-dark p-6 md:p-10 font-sans text-gray-300">
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-list"></i> Manajemen Jenis Menu</span>
-                <!-- Tombol ke halaman Create -->
-                <a href="create.php" class="btn btn-add btn-sm rounded-pill px-3">
-                    <i class="fas fa-plus"></i> Tambah Baru
-                </a>
+    <div class="max-w-6xl mx-auto">
+        <!-- Header Page -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                    <span class="w-1 h-8 bg-neon rounded-full block"></span>
+                    Manajemen Kategori
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">Kelola jenis/kategori produk kimia Anda di sini.</p>
             </div>
-            <div class="card-body">
+            
+            <a href="create.php" class="bg-neon text-dark font-bold px-6 py-2.5 rounded-lg shadow-[0_0_15px_rgba(102,252,241,0.3)] hover:bg-white hover:scale-105 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-plus"></i> Tambah Kategori
+            </a>
+        </div>
+
+        <!-- Content Card -->
+        <div class="bg-card border border-white/5 rounded-xl shadow-xl overflow-hidden p-6">
+            <div class="overflow-x-auto">
                 <!-- Memanggil file view_jenismenu.php -->
+                <!-- Pastikan file view_jenismenu.php HANYA berisi tabel/konten, bukan struktur HTML body penuh -->
                 <?php include 'view_jenismenu.php'; ?>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

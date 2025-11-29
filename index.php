@@ -6,8 +6,20 @@
 <title>Chemika Nusantara - Modern Lab</title>
 <meta name="description" content="Toko Bahan Kimia Terlengkap">
 
-<!-- Favicons -->
-<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+<!-- ====== FAVICONS ====== -->
+<link rel="icon" type="image/png" sizes="16x16" href="img/logo/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="img/logo/favicon-32x32.png" />
+<link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
+
+<!-- ====== APPLE TOUCH ICON ====== -->
+<link rel="apple-touch-icon" href="img/logo/apple-touch-icon.png" />
+
+<!-- ====== ANDROID / CHROME ICONS ====== -->
+<link rel="icon" type="image/png" sizes="192x192" href="img/logo/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="img/logo/android-chrome-512x512.png" />
+
+<!-- ====== WEB MANIFEST ====== -->
+<link rel="manifest" href="img/logo/site.webmanifest" />
 
 <!-- TAILWIND CSS (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -95,6 +107,9 @@
           <a href="#portfolio" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">GALERI</a>
           <a href="#team" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">TIM</a>
           <a href="#contact" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">KONTAK</a>
+          <a href="login.php" class="bg-[#66FCF1] text-[#0B0C10] px-5 py-2 rounded-full text-sm font-bold hover:bg-white transition-all duration-300 shadow-[0_0_10px_rgba(102,252,241,0.4)] flex items-center gap-2">
+            <i class="fa-solid fa-user-tie"></i> ADMIN
+          </a>
         </div>
       </div>
       <div class="-mr-2 flex md:hidden">

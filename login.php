@@ -40,95 +40,122 @@ if(isset($_POST['login'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - Chemika Nusantara</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; /* Hilangkan scrollbar */
-            margin: 0;
-            background-color: #000; /* Fallback color */
-        }
-        
-        /* BACKGROUND IMAGE BLUR */
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1; /* Taruh di belakang */
-            filter: blur(8px) brightness(0.7); /* Efek Blur & Gelap dikit biar tulisan jelas */
-            transform: scale(1.1); /* Zoom dikit biar pinggiran blur gak putih */
-        }
+    <!-- ====== FAVICONS ====== -->
+<link rel="icon" type="image/png" sizes="16x16" href="img/logo/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="img/logo/favicon-32x32.png" />
+<link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
 
-        .login-card {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            border: none;
-            /* Efek kaca (Glassmorphism) */
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            z-index: 1; /* Pastikan di depan background */
+<!-- ====== APPLE TOUCH ICON ====== -->
+<link rel="apple-touch-icon" href="img/logo/apple-touch-icon.png" />
+
+<!-- ====== ANDROID / CHROME ICONS ====== -->
+<link rel="icon" type="image/png" sizes="192x192" href="img/logo/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="img/logo/android-chrome-512x512.png" />
+
+<!-- ====== WEB MANIFEST ====== -->
+<link rel="manifest" href="img/logo/site.webmanifest" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'] },
+                    colors: { dark: '#0B0C10', card: '#1F2833', neon: '#66FCF1' }
+                }
+            }
         }
-        
-        .btn-login {
-            background: linear-gradient(to right, #1E90FF, #779936);
-            border: none;
-            color: white;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-        .btn-login:hover { 
-            transform: scale(1.02);
-            color: white;
-            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+    </script>
+    <style>
+        .bg-pattern {
+            background-color: #0B0C10;
+            background-image: radial-gradient(#1F2833 1px, transparent 1px);
+            background-size: 20px 20px;
         }
     </style>
 </head>
-<body>
+<body class="bg-pattern h-screen flex items-center justify-center text-gray-300 relative overflow-hidden">
 
-    <!-- GAMBAR BACKGROUND (Dari Prompt Generator) -->
-    <!-- Saya menggunakan Content ID hasil generate tadi -->
-    <img src="img/login.jpg" class="bg-image" alt="Chemical Background">
+    <!-- Efek Glow Background -->
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-neon/20 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-500/20 rounded-full blur-[100px]"></div>
 
-    <div class="card login-card p-4">
-        <div class="card-body">
-            <div class="text-center mb-4">
-                <h3 class="fw-bold" style="color:#1E90FF">CHEMIKA LAB</h3>
-                <small class="text-muted">Silakan masuk untuk mengelola data</small>
-            </div>
+    <div class="relative w-full max-w-md p-8">
+        <!-- Card Login -->
+        <div class="bg-card/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8 transform hover:scale-[1.01] transition-all duration-300">
             
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dark border-2 border-neon mb-4 shadow-[0_0_15px_rgba(102,252,241,0.3)]">
+                    <img src="img/logo.png" alt="Logo Chemika" class="w-16 h-16 rounded-full object-cover">
+                </div>
+                <h2 class="text-3xl font-heading font-bold text-white tracking-wide">CHEMIKA <span class="text-neon">ADMIN</span></h2>
+                <p class="text-sm text-gray-400 mt-2">Masuk untuk mengelola data laboratorium</p>
+            </div>
+
             <?php if(isset($error)) : ?>
-                <div class="alert alert-danger py-2 text-center small" role="alert">
-                    <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
+                <div class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg mb-6 text-center text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation"></i> <?php echo $error; ?>
                 </div>
             <?php endif; ?>
 
-            <form method="POST">
-                <div class="form-floating mb-3">
-                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username" required>
-                    <label for="floatingInput">Username</label>
+            <form method="POST" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Username</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3.5 text-gray-500"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" name="username" class="w-full bg-dark border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all" placeholder="Masukkan username" required>
+                    </div>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                    <label for="floatingPassword">Password</label>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3.5 text-gray-500"><i class="fa-solid fa-lock"></i></span>
+                        <!-- Input Field -->
+                        <input type="password" name="password" id="passwordInput" class="w-full bg-dark border border-gray-700 rounded-lg py-3 pl-10 pr-12 text-white focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all" placeholder="Masukkan password" required>
+                        
+                        <!-- Tombol Mata (Toggle) -->
+                        <button type="button" onclick="togglePassword()" class="absolute right-4 top-3.5 text-gray-500 hover:text-neon transition-colors focus:outline-none">
+                            <i class="fa-solid fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" name="login" class="btn btn-login w-100 py-3 mt-2">MASUK SEKARANG</button>
+
+                <button type="submit" name="login" class="w-full bg-neon text-dark font-bold py-3.5 rounded-lg hover:bg-white hover:shadow-[0_0_20px_rgba(102,252,241,0.4)] transition-all duration-300 transform active:scale-95">
+                    MASUK DASHBOARD
+                </button>
             </form>
-            
-            <div class="text-center mt-4">
-                <a href="index.php" class="text-decoration-none text-muted small fw-bold">
-                    &larr; Kembali ke Website Utama
+
+            <div class="mt-8 text-center border-t border-gray-700 pt-6">
+                <a href="index.php" class="text-sm text-gray-400 hover:text-neon transition-colors flex items-center justify-center gap-2 group">
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Kembali ke Website Utama
                 </a>
             </div>
         </div>
     </div>
+
+    <!-- Script Toggle Password -->
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("passwordInput");
+            var toggleIcon = document.getElementById("toggleIcon");
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
 
 </body>
 </html>
