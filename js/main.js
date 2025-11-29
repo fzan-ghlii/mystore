@@ -1,4 +1,3 @@
-
 function main() {
 
 (function () {
@@ -10,7 +9,9 @@ function main() {
           target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
           if (target.length) {
             $('html,body').animate({
-              scrollTop: target.offset().top - 40
+              // PERBAIKAN DI SINI:
+              // Offset dinaikkan dari 40 menjadi 80 agar judul tidak tertutup navbar
+              scrollTop: target.offset().top - 80 
             }, 900);
             return false;
           }
@@ -20,6 +21,7 @@ function main() {
 	
     // Show Menu on Book
     $(window).bind('scroll', function() {
+        // Nav height logic trigger
         var navHeight = $(window).height() - 500;
         if ($(window).scrollTop() > navHeight) {
             $('.navbar-default').addClass('on');
@@ -30,6 +32,8 @@ function main() {
 
     $('body').scrollspy({ 
         target: '.navbar-default',
+        // PERBAIKAN DI SINI:
+        // Offset scrollspy disamakan (80) agar menu aktif menyala tepat waktu
         offset: 80
     });
 

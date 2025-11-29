@@ -105,7 +105,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
     <div>
         <!-- Sidebar Kiri -->
         <div class="sidebar">
-            <h4><i class="fas fa-flask"></i>Chemika Lab</h4>
+            <h4><i class="fas fa-flask"></i></h4>
             
             <div class="menu-items">
                 <a href="?page=home" class="<?php echo (!isset($_GET['page']) || $_GET['page'] == 'home') ? 'active' : ''; ?>">

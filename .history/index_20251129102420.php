@@ -90,11 +90,11 @@
       </div>
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          <a href="#about" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">TENTANG</a>
-          <a href="#products" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">PRODUK</a>
-          <a href="#portfolio" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">GALERI</a>
-          <a href="#team" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">TIM</a>
-          <a href="#contact" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">KONTAK</a>
+          <a href="#about" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">Tentang</a>
+          <a href="#products" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">Produk</a>
+          <a href="#portfolio" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">Galeri</a>
+          <a href="#team" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">Tim</a>
+          <a href="#contact" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">Kontak</a>
         </div>
       </div>
       <div class="-mr-2 flex md:hidden">
@@ -107,10 +107,10 @@
   <div id="mobile-menu" class="hidden md:hidden bg-[#0B0C10] border-t border-gray-800">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
       <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">TENTANG</a>
-      <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">PRODUK</a>
-      <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">GALERI</a>
-      <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">TIM</a>
-      <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">KONTAK</a>
+      <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">Produk</a>
+      <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">Galeri</a>
+      <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">Tim</a>
+      <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">Kontak</a>
     </div>
   </div>
 </nav>
@@ -243,7 +243,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Filter Buttons -->
         <div class="flex flex-wrap justify-center gap-4 mb-12" id="portfolio-filters">
-            <button data-filter="*" class="filter-btn active px-6 py-2 rounded-full border border-gray-700 text-white bg-[#141619] hover:bg-[#66FCF1] hover:text-[#0B0C10] hover:border-[#66FCF1] transition-all duration-300 font-medium">SEMUA</button>
+            <button data-filter="*" class="filter-btn active px-6 py-2 rounded-full border border-gray-700 text-white bg-[#141619] hover:bg-[#66FCF1] hover:text-[#0B0C10] hover:border-[#66FCF1] transition-all duration-300 font-medium">Semua</button>
             <?php 
             $filterKat = mysqli_query($conn, "SELECT * FROM tbjenismenu");
             while($fk = mysqli_fetch_assoc($filterKat)){
