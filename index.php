@@ -107,7 +107,7 @@
           <a href="#portfolio" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">GALERI</a>
           <a href="#team" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">TIM</a>
           <a href="#contact" class="nav-link text-gray-300 hover:text-[#66FCF1] px-3 py-2 rounded-md text-sm font-medium transition-colors">KONTAK</a>
-          <a href="login.php" class="bg-[#66FCF1] text-[#0B0C10] px-5 py-2 rounded-full text-sm font-bold hover:bg-white transition-all duration-300 shadow-[0_0_10px_rgba(102,252,241,0.4)] flex items-center gap-2">
+          <a href="login.php" class="bg-[#66FCF1] text-[#0B0C10] px-6 py-2 rounded-full text-sm font-bold hover:bg-white hover:shadow-[0_0_15px_rgba(102,252,241,0.5)] transition-all duration-300 flex items-center gap-2 transform hover:scale-105">
             <i class="fa-solid fa-user-tie"></i> ADMIN
           </a>
         </div>
@@ -126,6 +126,12 @@
       <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">GALERI</a>
       <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">TIM</a>
       <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-[#66FCF1]">KONTAK</a>
+      <!-- TOMBOL LOGIN MOBILE -->
+      <div class="pt-4 mt-2 border-t border-white/10">
+          <a href="login.php" class="block text-center bg-[#66FCF1] text-[#0B0C10] px-3 py-3 rounded-lg text-base font-bold hover:bg-white transition-all shadow-lg shadow-[#66FCF1]/20">
+            <i class="fa-solid fa-user-tie mr-2"></i> Masuk Admin
+          </a>
+      </div>
     </div>
   </div>
 </nav>
